@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="\$unit_top_sv_1663703613 " />
+            <top_module name="glbl" />
+            <top_module name="tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="65.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="208.401 ns"></ZoomEndTime>
+      <Cursor1Time time="115.400 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="109"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="34" />
+   <wave_markers>
+      <marker time="45100" label="" />
+   </wave_markers>
+   <wvobject fp_name="/tb/btn" type="logic">
+      <obj_property name="ElementShortName">btn</obj_property>
+      <obj_property name="ObjectShortName">btn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/seg" type="array">
+      <obj_property name="ElementShortName">seg[7:0]</obj_property>
+      <obj_property name="ObjectShortName">seg[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/led_rst" type="logic">
+      <obj_property name="ElementShortName">led_rst</obj_property>
+      <obj_property name="ObjectShortName">led_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/act_seg" type="array">
+      <obj_property name="ElementShortName">act_seg[3:0]</obj_property>
+      <obj_property name="ObjectShortName">act_seg[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/led" type="logic">
+      <obj_property name="ElementShortName">led</obj_property>
+      <obj_property name="ObjectShortName">led</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/clk_btn" type="logic">
+      <obj_property name="ElementShortName">clk_btn</obj_property>
+      <obj_property name="ObjectShortName">clk_btn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/led_done" type="logic">
+      <obj_property name="ElementShortName">led_done</obj_property>
+      <obj_property name="ObjectShortName">led_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test" type="array">
+      <obj_property name="ElementShortName">prn_test[4095:0]</obj_property>
+      <obj_property name="ObjectShortName">prn_test[4095:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[20]" type="logic">
+      <obj_property name="ElementShortName">[20]</obj_property>
+      <obj_property name="ObjectShortName">[20]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[19]" type="logic">
+      <obj_property name="ElementShortName">[19]</obj_property>
+      <obj_property name="ObjectShortName">[19]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[18]" type="logic">
+      <obj_property name="ElementShortName">[18]</obj_property>
+      <obj_property name="ObjectShortName">[18]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[17]" type="logic">
+      <obj_property name="ElementShortName">[17]</obj_property>
+      <obj_property name="ObjectShortName">[17]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[16]" type="logic">
+      <obj_property name="ElementShortName">[16]</obj_property>
+      <obj_property name="ObjectShortName">[16]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[15]" type="logic">
+      <obj_property name="ElementShortName">[15]</obj_property>
+      <obj_property name="ObjectShortName">[15]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[14]" type="logic">
+      <obj_property name="ElementShortName">[14]</obj_property>
+      <obj_property name="ObjectShortName">[14]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[13]" type="logic">
+      <obj_property name="ElementShortName">[13]</obj_property>
+      <obj_property name="ObjectShortName">[13]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[12]" type="logic">
+      <obj_property name="ElementShortName">[12]</obj_property>
+      <obj_property name="ObjectShortName">[12]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[11]" type="logic">
+      <obj_property name="ElementShortName">[11]</obj_property>
+      <obj_property name="ObjectShortName">[11]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[10]" type="logic">
+      <obj_property name="ElementShortName">[10]</obj_property>
+      <obj_property name="ObjectShortName">[10]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[9]" type="logic">
+      <obj_property name="ElementShortName">[9]</obj_property>
+      <obj_property name="ObjectShortName">[9]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[8]" type="logic">
+      <obj_property name="ElementShortName">[8]</obj_property>
+      <obj_property name="ObjectShortName">[8]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[7]" type="logic">
+      <obj_property name="ElementShortName">[7]</obj_property>
+      <obj_property name="ObjectShortName">[7]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[6]" type="logic">
+      <obj_property name="ElementShortName">[6]</obj_property>
+      <obj_property name="ObjectShortName">[6]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[5]" type="logic">
+      <obj_property name="ElementShortName">[5]</obj_property>
+      <obj_property name="ObjectShortName">[5]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[4]" type="logic">
+      <obj_property name="ElementShortName">[4]</obj_property>
+      <obj_property name="ObjectShortName">[4]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[3]" type="logic">
+      <obj_property name="ElementShortName">[3]</obj_property>
+      <obj_property name="ObjectShortName">[3]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[2]" type="logic">
+      <obj_property name="ElementShortName">[2]</obj_property>
+      <obj_property name="ObjectShortName">[2]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[1]" type="logic">
+      <obj_property name="ElementShortName">[1]</obj_property>
+      <obj_property name="ObjectShortName">[1]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/prn_test[0]" type="logic">
+      <obj_property name="ElementShortName">[0]</obj_property>
+      <obj_property name="ObjectShortName">[0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/s_reg[8]" type="logic">
+      <obj_property name="ElementShortName">[8]</obj_property>
+      <obj_property name="ObjectShortName">[8]</obj_property>
+      <obj_property name="CustomSignalColor">#008080</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/s_reg[4]" type="logic">
+      <obj_property name="ElementShortName">[4]</obj_property>
+      <obj_property name="ObjectShortName">[4]</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/s_reg[6]" type="logic">
+      <obj_property name="ElementShortName">[6]</obj_property>
+      <obj_property name="ObjectShortName">[6]</obj_property>
+      <obj_property name="CustomSignalColor">#FF0000</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/s_reg" type="array">
+      <obj_property name="ElementShortName">s_reg[9:0]</obj_property>
+      <obj_property name="ObjectShortName">s_reg[9:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+</wave_config>
