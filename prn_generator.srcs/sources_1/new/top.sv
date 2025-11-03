@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-parameter CODE_LENGTH   = 4096;
+parameter CODE_LENGTH   = 1023;
 parameter SR_LENGTH     = 10;   //shift register's length 
 parameter N_OUT_GLN     = 7;    //номер выходного бита
 parameter N_SV          = 37;
@@ -24,9 +24,6 @@ module top(
     output bit [SR_LENGTH-1:0] s_reg // отладка
     `endif
     );
-    
-
-
     
     bit done;
     bit bit_prn;
@@ -62,7 +59,7 @@ module top(
         .ones(p3)
     );
     
-    generator #(.n_out(N_OUT_GLN)) g1 
+    generator #(.n_out(N_OUT_GLN), .code_length(CODE_LENGTH), .sr_length(SR_LENGTH)) g1 
     (
         .m_clk(clk),
         .m_rst(rst),
@@ -75,7 +72,6 @@ module top(
         `endif
     );
                   
-    
     typedef enum bit [7:0]
     {
         D1     = 8'b1111_1001,
@@ -165,72 +161,4 @@ module top(
 endmodule
 
 
-module generator
-#(
-  parameter n_out = 9,
-  parameter code_length = 1023
-)
-(
-    input m_clk,
-    input m_rst,
-    input [SR_LENGTH-1:0] polynome,
-    output reg [CODE_LENGTH-1:0] out,
-    output bit m_done
-    `ifdef SIMULATION
-    ,
-    output bit [SR_LENGTH-1:0] sr // отладка
-    `endif
-);
-    logic first_bit = 1'b0;
-    bit [$clog2(CODE_LENGTH):0] m_counter = '0;
-    reg [SR_LENGTH-1:0] shift_reg = '1;
-    `ifdef SIMULATION
-    assign sr = shift_reg;
-    `endif
-    always_ff @(posedge m_clk) begin
-        if (!m_rst) begin
-            first_bit <= 1'b0;
-            m_counter <= '0;
-            shift_reg <= '1;
-            m_done <= 1'b0; 
-        end
-        else if (m_counter < CODE_LENGTH) begin
-            m_done <= 1'b0; 
-            m_counter <= m_counter + 1;
-            out[m_counter]   <=  shift_reg[n_out-1];
-            shift_reg <= {shift_reg[SR_LENGTH-2:0], ^(shift_reg & polynome)}; //
-        end
-        else begin
-//            counter <= 0;
-            m_done <= 1'b1;
-        end
-    end
-    
-endmodule
-
-
-module digit_place
-(
-    input [14:0] number,
-    output logic [3:0] thousands,
-    output logic [3:0] hundreds,
-    output logic [3:0] tens,
-    output logic [3:0] ones
-);
-    logic [14:0] temp_digit;
-    always_comb begin
-        temp_digit = number;
-        
-        thousands = temp_digit / 1000;
-        temp_digit = temp_digit % 1000;
-        
-        hundreds = temp_digit / 100;
-        temp_digit = temp_digit % 100;
-        
-        tens = temp_digit / 10;
-        
-        ones = temp_digit % 10;
-    end
-    
-endmodule
 

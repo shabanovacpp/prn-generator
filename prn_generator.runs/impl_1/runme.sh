@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/User/Desktop/Ira/vivadoProjects/prn_generator/prn_generator.runs/impl_1'
+HD_PWD='S:/Repos/prn-generator/prn_generator.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

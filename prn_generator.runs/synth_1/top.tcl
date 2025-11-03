@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/User/Desktop/Ira/vivadoProjects/prn_generator/prn_generator.runs/synth_1/top.tcl"
+  variable script "S:/Repos/prn-generator/prn_generator.runs/synth_1/top.tcl"
   variable category "vivado_synth"
 }
 
@@ -71,23 +71,26 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 4
-set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Users/User/Desktop/Ira/vivadoProjects/prn_generator/prn_generator.cache/wt [current_project]
-set_property parent.project_path C:/Users/User/Desktop/Ira/vivadoProjects/prn_generator/prn_generator.xpr [current_project]
+set_property webtalk.parent_dir S:/Repos/prn-generator/prn_generator.cache/wt [current_project]
+set_property parent.project_path S:/Repos/prn-generator/prn_generator.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part digilentinc.com:basys3:part0:1.2 [current_project]
-set_property ip_output_repo c:/Users/User/Desktop/Ira/vivadoProjects/prn_generator/prn_generator.cache/ip [current_project]
+set_property ip_output_repo s:/Repos/prn-generator/prn_generator.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib -sv C:/Users/User/Desktop/Ira/vivadoProjects/prn_generator/prn_generator.srcs/sources_1/new/top.sv
+read_verilog -library xil_defaultlib -sv {
+  S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/digit_place.sv
+  S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/generator.sv
+  S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/top.sv
+}
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -97,12 +100,12 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/User/Desktop/Ira/vivadoProjects/prn_generator/prn_generator.srcs/constrs_1/new/connections.xdc
-set_property used_in_implementation false [get_files C:/Users/User/Desktop/Ira/vivadoProjects/prn_generator/prn_generator.srcs/constrs_1/new/connections.xdc]
+read_xdc S:/Repos/prn-generator/prn_generator.srcs/constrs_1/new/connections.xdc
+set_property used_in_implementation false [get_files S:/Repos/prn-generator/prn_generator.srcs/constrs_1/new/connections.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental C:/Users/User/Desktop/Ira/vivadoProjects/prn_generator/prn_generator.srcs/utils_1/imports/synth_1/top.dcp
+read_checkpoint -auto_incremental -incremental S:/Repos/prn-generator/prn_generator.srcs/utils_1/imports/synth_1/top.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
