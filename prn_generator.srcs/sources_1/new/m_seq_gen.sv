@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module generator
+module m_seq_gen
 #(
   parameter n_out = 9,
   parameter code_length = 1023,
