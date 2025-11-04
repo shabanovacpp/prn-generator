@@ -72,6 +72,7 @@ proc create_report { reportName command } {
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 4
 set_param xicom.use_bs_reader 1
+set_msg_config -id {Common 17-41} -limit 10000000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -89,7 +90,7 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib -sv {
   S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/digit_place.sv
-  S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/generator.sv
+  S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/m_seq_gen.sv
   S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/seven_segment.sv
   S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/top.sv
 }
