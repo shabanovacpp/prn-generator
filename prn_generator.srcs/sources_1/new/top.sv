@@ -3,13 +3,14 @@
 parameter CODE_LENGTH_GLN   = 511;
 parameter CODE_LENGTH_GPS   = 1023;
 parameter SR_LENGTH     = 10;   //shift register's length 
-parameter N_OUT_GLN     = 7;    //номер выходного бита
-parameter N_OUT_GPS     = 10;    //номер выходного бита
+parameter N_OUT_GLN     = 7;    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+parameter N_OUT_GPS     = 10;    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 parameter N_SV          = 37;
 parameter [9:0] polynomeGLN    = 10'b0100010000;
 parameter [9:0] polynomeGPS1   = 10'b1000000100; 
 parameter [9:0] polynomeGPS2   = 10'b1110100110; 
 parameter NUM_SAT = 1;
+parameter RETENTION_DURATION = 15*10;
 
 module top(
     input clk,
@@ -20,14 +21,18 @@ module top(
     output bit [2:0] LED,
     output bit LED_RST,
     output bit [7:0] seg
+    output tx,       // A18
+    output tx_busy   // V19
+    
+
     `ifdef SIMULATION
     ,
-    output bit clk_btn,  // отладка
-    output bit [CODE_LENGTH_GLN-1:0] prn_test_gln,  // отладка
+    output bit clk_btn,  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    output bit [CODE_LENGTH_GLN-1:0] prn_test_gln,  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     output bit [CODE_LENGTH_GPS-1:0] prn_test_gps1,
     output bit [CODE_LENGTH_GPS-1:0] prn_test_gps2,
     output bit [SR_LENGTH-1:0] s_reg_gln,
-    output bit [SR_LENGTH-1:0] s_reg_gps_g1, // отладка
+    output bit [SR_LENGTH-1:0] s_reg_gps_g1, // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     output bit [SR_LENGTH-1:0] s_reg_gps_g2
     `endif
     );
@@ -72,6 +77,9 @@ module top(
     
     bit g1, g2_1, g2_2;
     
+    bit seq_uart;
+    bit [7:0] uart_data;
+
     assign LED[1] = g1 ^ g2_1 ^ g2_2;
     
     
@@ -81,12 +89,16 @@ module top(
     bit btn_clk_rst;
     bit rst = 1'b0;
     assign LED_RST = rst; 
+
+    bit clk_uart;
+    bit [7:0] counter_clk_uart;
+    bit clk_uart_bite;
     
     `ifdef SIMULATION
-    assign clk_btn = btn_clk;  // отладка
-    assign prn_test_gln = prn_gln_l1of;  // отладка
-    assign prn_test_gps1 = g1_gps_l1ca;  // отладка
-    assign prn_test_gps2 = g2_gps_l1ca;  // отладка
+    assign clk_btn = btn_clk;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    assign prn_test_gln = prn_gln_l1of;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    assign prn_test_gps1 = g1_gps_l1ca;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    assign prn_test_gps2 = g2_gps_l1ca;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     `endif
     
     bit [3:0] p0;
@@ -94,6 +106,14 @@ module top(
     bit [3:0] p2;
     bit [3:0] p3;
     
+    initial begin 
+        uart_data = '1;
+        tx_enable = '0;
+        counter_clk_uart = 8'd1;
+    end
+
+
+
     digit_place d_g1
     (
         .number(counter),
@@ -162,6 +182,48 @@ module top(
         .act_seg(act_seg)
     );
     
+    controller_uart c1
+    (
+        .clk_100MHz(clk),
+        .data(uart_data),
+        .tx_enable(tx_enable),
+        .tx(tx),
+        .uart_clk(clk_uart)
+    );
+
+    m_seq_gen #(.n_out(N_OUT_GLN), .code_length(CODE_LENGTH_GLN),
+                .sr_length(SR_LENGTH), .polynome(polynomeGLN)) gln_l1of_uart 
+    (
+        .m_clk(clk_uart_bite),
+        .m_rst(rst),
+        .out(seq_uart)
+        `ifdef SIMULATION
+        ,
+        .sr(s_reg_gln)
+        `endif
+    );
+
+    alwayws_ff @(posedge clk_uart) begin
+
+        if (counter_clk_uart == 0) begin
+            clk_uart_bite <= 1'b1;
+            tx_enable <= 1'b1;
+        end
+        else begin
+            clk_uart_bite <= 1'b0;
+        end
+
+        if (counter_clk_uart < RETENTION_DURATION) begin
+            counter_clk_uart <= counter_clk_uart + 1;
+        end
+        else begin
+            counter_clk_uart <= 0;
+
+        end
+    end
+
+
+
     always_ff @(posedge clk) begin   //for rst
         counter_clk <= counter_clk + 1;
         `ifdef SYNTHESIS
@@ -174,7 +236,6 @@ module top(
         
     end
     
-    
     always_ff @(posedge btn_clk) begin
         if (!rst)
             counter <= 0;
@@ -183,7 +244,7 @@ module top(
         end
     end
     
-    always_ff @(posedge clk) begin  // защита от дребезга контактов кнопки
+    always_ff @(posedge clk) begin  // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         if (BTN == 1) begin 
             if (counter_btn < 24'hFFFFFF) 
                 counter_btn <= counter_btn + 1;
