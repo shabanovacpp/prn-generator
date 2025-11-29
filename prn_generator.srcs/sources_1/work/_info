@@ -1,0 +1,86 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dS:/Repos/prn-generator/prn_generator.srcs/sources_1
+vcontroller_uart
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z2 !s110 1764432295
+!i10b 1
+!s100 9bSTHhNOV9Z63AHVH4`Kh2
+Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I[kBf8NP1kc=<`NlizDHGn1
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+Z5 w1764427480
+8new/controller_uart.sv
+Fnew/controller_uart.sv
+!i122 6
+L0 3 101
+Z6 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z7 !s108 1764432295.000000
+!s107 new/controller_uart.sv|
+!s90 -reportprogress|300|-sv|new/controller_uart.sv|
+!i113 1
+o-sv
+Z8 tCvgOpt 0
+vtb_controller
+R1
+R2
+!i10b 1
+!s100 aVnWoombfLz85gTYbN_Ez0
+R3
+IfDQI]n:bK]P`PeoG7SVeJ1
+R4
+S1
+R0
+R5
+8new/tb_controller.sv
+Fnew/tb_controller.sv
+!i122 8
+L0 3 52
+R6
+r1
+!s85 0
+31
+R7
+!s107 new/tb_controller.sv|
+!s90 -reportprogress|300|-sv|new/tb_controller.sv|
+!i113 1
+o-sv
+R8
+vuart_tx
+R1
+R2
+!i10b 1
+!s100 WALgJBm[_P0;F@MO[9bSA2
+R3
+I92KMf=3cThR;G2^Zodl]H3
+R4
+S1
+R0
+R5
+8new/uart_tx.sv
+Fnew/uart_tx.sv
+!i122 7
+L0 36 131
+R6
+r1
+!s85 0
+31
+R7
+!s107 new/uart_tx.sv|
+!s90 -reportprogress|300|-sv|new/uart_tx.sv|
+!i113 1
+o-sv
+R8

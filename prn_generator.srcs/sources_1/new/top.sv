@@ -20,9 +20,9 @@ module top(
 //    input [N_SV-1:0] SV,
     output bit [2:0] LED,
     output bit LED_RST,
-    output bit [7:0] seg
-    output tx,       // A18
-    output tx_busy   // V19
+    output bit [7:0] seg,
+    output bit tx,       // A18
+    output bit tx_busy   // V19
     
 
     `ifdef SIMULATION
@@ -93,6 +93,7 @@ module top(
     bit clk_uart;
     bit [7:0] counter_clk_uart;
     bit clk_uart_bite;
+    bit tx_enable;
     
     `ifdef SIMULATION
     assign clk_btn = btn_clk;  // �������
@@ -188,7 +189,8 @@ module top(
         .data(uart_data),
         .tx_enable(tx_enable),
         .tx(tx),
-        .uart_clk(clk_uart)
+        .uart_clk(clk_uart),
+        .tx_busy(tx_busy)
     );
 
     m_seq_gen #(.n_out(N_OUT_GLN), .code_length(CODE_LENGTH_GLN),
@@ -203,11 +205,12 @@ module top(
         `endif
     );
 
-    alwayws_ff @(posedge clk_uart) begin
+    always_ff @(posedge clk_uart) begin
 
         if (counter_clk_uart == 0) begin
             clk_uart_bite <= 1'b1;
             tx_enable <= 1'b1;
+            uart_data <= {8{seq_uart}};
         end
         else begin
             clk_uart_bite <= 1'b0;
