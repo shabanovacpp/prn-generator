@@ -1,0 +1,56 @@
+# Reading pref.tcl
+# do m.do
+# vlib work
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# vlog -sv new/controller_uart.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:04:55 on Nov 29,2025
+# vlog -reportprogress 300 -sv new/controller_uart.sv 
+# -- Compiling module controller_uart
+# 
+# Top level modules:
+# 	controller_uart
+# End time: 19:04:55 on Nov 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv new/uart_tx.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:04:55 on Nov 29,2025
+# vlog -reportprogress 300 -sv new/uart_tx.sv 
+# -- Compiling module uart_tx
+# 
+# Top level modules:
+# 	uart_tx
+# End time: 19:04:55 on Nov 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv new/tb_controller.sv
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:04:55 on Nov 29,2025
+# vlog -reportprogress 300 -sv new/tb_controller.sv 
+# -- Compiling module tb_controller
+# 
+# Top level modules:
+# 	tb_controller
+# End time: 19:04:55 on Nov 29,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ns -voptargs="+acc" tb_controller
+# vsim -t 1ns -voptargs=""+acc"" tb_controller 
+# Start time: 19:04:55 on Nov 29,2025
+# Loading sv_std.std
+# Loading work.tb_controller
+# Loading work.controller_uart
+# Loading work.uart_tx
+# 
+# add wave -group "inputs" -color orange  /tb_controller/f /tb_controller/f1 /tb_controller/num1 /tb_controller/tx_enable /tb_controller/num1
+# add wave -group "outputs" -color orange  /tb_controller/tx_busy
+# add wave -group "outputs" -color pink /tb_controller/tx
+# 
+# configure wave -timelineunits us
+# 
+# run 1000 us
+# wave zoom range 0 300us
+# 0 ns
+# 300 us
+# End time: 19:05:19 on Nov 29,2025, Elapsed time: 0:00:24
+# Errors: 0, Warnings: 0
