@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Sat Nov 29 19:23:25 2025
+| Date         : Sun Nov 30 22:42:57 2025
 | Host         : WIN-UFU5MFIKGKT running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    17 |
-|    Minimum number of control sets                        |    17 |
+| Total control sets                                       |    12 |
+|    Minimum number of control sets                        |    12 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    70 |
+| Unused register locations in slices containing registers |    54 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    17 |
-| >= 0 to < 4        |     3 |
-| >= 4 to < 6        |     3 |
-| >= 6 to < 8        |     1 |
+| Total control sets |    12 |
+| >= 0 to < 4        |     2 |
+| >= 4 to < 6        |     2 |
+| >= 6 to < 8        |     2 |
 | >= 8 to < 10       |     1 |
-| >= 10 to < 12      |     1 |
+| >= 10 to < 12      |     2 |
 | >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     1 |
-| >= 16              |     7 |
+| >= 14 to < 16      |     0 |
+| >= 16              |     3 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,38 +58,33 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              56 |           19 |
+| No           | No                    | No                     |              55 |           17 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              23 |            9 |
+| No           | Yes                   | No                     |              64 |           16 |
 | Yes          | No                    | No                     |               1 |            1 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             130 |           33 |
+| Yes          | Yes                   | No                     |              34 |            8 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+------------------------+---------------------------------------+---------------------------------------+------------------+----------------+--------------+
-|      Clock Signal      |             Enable Signal             |            Set/Reset Signal           | Slice Load Count | Bel Load Count | Bels / Slice |
-+------------------------+---------------------------------------+---------------------------------------+------------------+----------------+--------------+
-|  clk_uart_bite_reg_n_0 |                                       |                                       |                1 |              1 |         1.00 |
-|  btn_clk_reg_n_0_BUFG  | gln_l1of/out_i_1_n_0                  |                                       |                1 |              1 |         1.00 |
-|  btn_clk_reg_n_0_BUFG  |                                       |                                       |                2 |              3 |         1.50 |
-|  clk_uart_BUFG         | c1/uart_tx_115200/retention_counter   | c1/uart_tx_115200/tx0                 |                1 |              4 |         4.00 |
-|  counter_clk_reg[18]   |                                       |                                       |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG         |                                       | c1/counter[4]_i_1__0_n_0              |                1 |              5 |         5.00 |
-|  clk_uart_BUFG         | c1/uart_tx_115200/tx_i_1_n_0          | c1/uart_tx_115200/tx0                 |                2 |              6 |         3.00 |
-|  clk_uart_BUFG         |                                       | counter_clk_uart[7]_i_1_n_0           |                3 |              8 |         2.67 |
-|  btn_clk_reg_n_0_BUFG  |                                       | rst10_in                              |                5 |             10 |         2.00 |
-|  clk_uart_BUFG         |                                       |                                       |                4 |             14 |         3.50 |
-|  clk_uart_bite_reg_n_0 | gln_l1of_uart/shift_reg[8]_i_2__0_n_0 | gln_l1of_uart/shift_reg[8]_i_1__0_n_0 |                4 |             18 |         4.50 |
-|  btn_clk_reg_n_0_BUFG  | gln_l1of/shift_reg[8]_i_2_n_0         | gln_l1of/shift_reg[8]_i_1_n_0         |                6 |             18 |         3.00 |
-|  btn_clk_reg_n_0_BUFG  | gps_l1ca_g1/sel                       | gps_l1ca_g1/shift_reg[9]_i_1__1_n_0   |                4 |             20 |         5.00 |
-|  btn_clk_reg_n_0_BUFG  | gps_l1ca_g2_1/shift_reg[9]_i_2_n_0    | gps_l1ca_g2_1/shift_reg[9]_i_1_n_0    |                5 |             20 |         4.00 |
-|  btn_clk_reg_n_0_BUFG  | gps_l1ca_g2_2/shift_reg[9]_i_2__0_n_0 | gps_l1ca_g2_2/shift_reg[9]_i_1__0_n_0 |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG         | counter_btn[0]_i_2_n_0                | clear                                 |                6 |             24 |         4.00 |
-|  clk_IBUF_BUFG         |                                       |                                       |               11 |             34 |         3.09 |
-+------------------------+---------------------------------------+---------------------------------------+------------------+----------------+--------------+
++----------------------------------+-------------------------------------+--------------------------+------------------+----------------+--------------+
+|           Clock Signal           |            Enable Signal            |     Set/Reset Signal     | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------------------------+-------------------------------------+--------------------------+------------------+----------------+--------------+
+|  btn_clk_reg_n_0_BUFG            | LED_RST_OBUF                        |                          |                1 |              1 |         1.00 |
+|  c1/uart_tx_115200/tx_busy_reg_0 |                                     |                          |                1 |              2 |         2.00 |
+|  counter_clk_reg[18]             |                                     |                          |                1 |              4 |         4.00 |
+|  c1/clk_uart_reg_n_0             | c1/uart_tx_115200/retention_counter | c1/uart_tx_115200/tx0    |                1 |              4 |         4.00 |
+|  c1/clk_uart_reg_n_0             | c1/uart_tx_115200/tx_i_1_n_0        | c1/uart_tx_115200/tx0    |                1 |              6 |         6.00 |
+|  btn_clk_reg_n_0_BUFG            |                                     |                          |                2 |              7 |         3.50 |
+|  c1/uart_tx_115200/tx_busy_reg_0 |                                     | gps_l1ca_g1/rst_reg      |                3 |              9 |         3.00 |
+|  clk_IBUF_BUFG                   |                                     | c1/counter[9]_i_1__0_n_0 |                2 |             10 |         5.00 |
+|  c1/clk_uart_reg_n_0             |                                     |                          |                2 |             10 |         5.00 |
+|  clk_IBUF_BUFG                   | sel                                 | clear                    |                6 |             24 |         4.00 |
+|  clk_IBUF_BUFG                   |                                     |                          |               11 |             34 |         3.09 |
+|  btn_clk_reg_n_0_BUFG            |                                     | gps_l1ca_g1/rst_reg      |               11 |             45 |         4.09 |
++----------------------------------+-------------------------------------+--------------------------+------------------+----------------+--------------+
 
 

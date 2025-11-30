@@ -25,7 +25,7 @@ module controller_uart(
     reg tx_enable_ctrl;
     // UART clock related variables
     reg clk_uart;           // (100MHz) / (BAUD_RATE*OVERSAMPLING*2) 
-    reg [4:0] counter;
+    reg [9:0] counter;
 
     assign uart_clk = clk_uart;
     
@@ -52,7 +52,7 @@ module controller_uart(
     always @(posedge clk_100MHz) begin
         counter <= counter + 1;
 
-        if(counter == 5'd27) begin
+        if(counter == 10'd347) begin
             counter <= 0;
             clk_uart <= ~clk_uart;
         end
@@ -78,26 +78,26 @@ module controller_uart(
                 // TX complete, go to next state
                 if(~tx_busy && allow_next) begin
                     allow_next <= 0;
-                    state <= TX_NUM_2;
+                    state <= IDLE;
                 end
             end
             
             // Exactly the same as the previous state
-            TX_NUM_2: begin
-                out_data <= data;
+//            TX_NUM_2: begin
+//                out_data <= data;
                 
-                if(~tx_busy && ~allow_next)
-                    tx_enable_ctrl <= 1;
-                else begin
-                    allow_next <= 1;
-                    tx_enable_ctrl <= 0;
-                end
+//                if(~tx_busy && ~allow_next)
+//                    tx_enable_ctrl <= 1;
+//                else begin
+//                    allow_next <= 1;
+//                    tx_enable_ctrl <= 0;
+//                end
                 
-                if(~tx_busy && allow_next) begin
-                    allow_next <= 0;
-                    state <= TX_NUM_1;
-                end
-            end
+//                if(~tx_busy && allow_next) begin
+//                    allow_next <= 0;
+//                    state <= TX_NUM_1;
+//                end
+//            end
         endcase
     end
 endmodule

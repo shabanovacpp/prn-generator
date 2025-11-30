@@ -10,7 +10,7 @@ parameter [9:0] polynomeGLN    = 10'b0100010000;
 parameter [9:0] polynomeGPS1   = 10'b1000000100; 
 parameter [9:0] polynomeGPS2   = 10'b1110100110; 
 parameter NUM_SAT = 1;
-parameter RETENTION_DURATION = 15*10;
+parameter RETENTION_DURATION = 17*10;  //было 15*10
 
 module top(
     input clk,
@@ -79,6 +79,8 @@ module top(
     
     bit seq_uart;
     bit [7:0] uart_data;
+//    bit [7:0] uart_data2;
+//    bit [7:0] uart_data3;
 
     assign LED[1] = g1 ^ g2_1 ^ g2_2;
     
@@ -109,7 +111,9 @@ module top(
     
     initial begin 
         uart_data = '1;
-        tx_enable = '0;
+//        uart_data2 = '1;
+//        uart_data3 = '1;
+        tx_enable = '1;
         counter_clk_uart = 8'd1;
     end
 
@@ -196,7 +200,7 @@ module top(
     m_seq_gen #(.n_out(N_OUT_GLN), .code_length(CODE_LENGTH_GLN),
                 .sr_length(SR_LENGTH), .polynome(polynomeGLN)) gln_l1of_uart 
     (
-        .m_clk(clk_uart_bite),
+        .m_clk(tx_busy),
         .m_rst(rst),
         .out(seq_uart)
         `ifdef SIMULATION
@@ -204,29 +208,38 @@ module top(
         .sr(s_reg_gln)
         `endif
     );
+//    bit uart_data2;
+    
+//    always_ff @(posedge clk) begin
+//        uart_data2 <= uart_data;
+//    end
+    
+    always_ff @(posedge tx_busy) begin //clk_uart
 
-    always_ff @(posedge clk_uart) begin
+//        if (counter_clk_uart == 0) begin
+//            clk_uart_bite <= 1'b1;
+//            tx_enable <= 1'b1;
+//            //uart_data <= {8{seq_uart}};
+//            uart_data <= ~uart_data;
+//        end
+//        else begin
+//            clk_uart_bite <= 1'b0;
+//        end
 
-        if (counter_clk_uart == 0) begin
-            clk_uart_bite <= 1'b1;
-            tx_enable <= 1'b1;
-            uart_data <= {8{seq_uart}};
-        end
-        else begin
-            clk_uart_bite <= 1'b0;
-        end
-
-        if (counter_clk_uart < RETENTION_DURATION) begin
-            counter_clk_uart <= counter_clk_uart + 1;
-        end
-        else begin
-            counter_clk_uart <= 0;
-
-        end
+//        if (counter_clk_uart < RETENTION_DURATION) begin
+//            counter_clk_uart <= counter_clk_uart + 1;
+//        end
+//        else begin
+//            counter_clk_uart <= 0;
+//        end
+        
+        //if (tx_busy == 0) begin
+//          clk_uart_bite <= 1'b1;
+//          tx_enable <= 1'b1;
+          uart_data <= {8{seq_uart}};
+        //end
     end
-
-
-
+    
     always_ff @(posedge clk) begin   //for rst
         counter_clk <= counter_clk + 1;
         `ifdef SYNTHESIS

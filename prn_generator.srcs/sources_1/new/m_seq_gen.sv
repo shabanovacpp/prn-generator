@@ -25,15 +25,29 @@ module m_seq_gen
     assign sr = shift_reg;
     `endif
     always_ff @(posedge m_clk) begin
-        if (!m_rst | m_counter >= code_length) begin
+        if (!m_rst) begin
             m_counter <= '0;
             shift_reg <= '1;
         end
-        else if (m_counter < code_length) begin
+//        else if (m_counter < code_length) begin
+//            m_counter <= m_counter + 1;
+//            out <= shift_reg[n_out-1];
+//            shift_reg <= {shift_reg[sr_length-2:0], ^(shift_reg & polynome)}; //
+//        end
+        else begin
             m_counter <= m_counter + 1;
             out <= shift_reg[n_out-1];
             shift_reg <= {shift_reg[sr_length-2:0], ^(shift_reg & polynome)}; //
         end
+    
+        if (m_counter < code_length) begin
+            m_counter <= m_counter + 1;
+        end
+        else begin
+            m_counter <= 0;
+        end
+        
+        
     end
     
 endmodule

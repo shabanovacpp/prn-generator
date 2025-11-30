@@ -1,0 +1,10 @@
+Vivado Simulator v2022.2
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: N:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L secureip --snapshot tb_func_impl xil_defaultlib.tb xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+ERROR: [VRFC 10-3180] cannot find port 's_reg_gps_g2' on this module [S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/tb.sv:31]
+ERROR: [VRFC 10-3180] cannot find port 'prn_test_gps2' on this module [S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/tb.sv:30]
+ERROR: [VRFC 10-3180] cannot find port 'clk_btn' on this module [S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/tb.sv:29]
+ERROR: [XSIM 43-3322] Static elaboration of top level Verilog design unit(s) in library work failed.

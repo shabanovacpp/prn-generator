@@ -3,8 +3,10 @@
 Oct 14 2022
 05:20:55
 S:/Repos/prn-generator/prn_generator.sim/sim_1/behav/xsim/glbl.v,1665704903,verilog,,,,glbl,,uvm,,,,,,
-S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/digit_place.sv,1762176613,systemVerilog,S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/m_seq_gen.sv;S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/seven_segment.sv;S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/tb.sv;S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/top.sv,S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/m_seq_gen.sv,,$unit_digit_place_sv_686655553;digit_place,,uvm,,,,,,
-S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/m_seq_gen.sv,1762247955,systemVerilog,,S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/seven_segment.sv,,m_seq_gen,,uvm,,,,,,
-S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/seven_segment.sv,1762180687,systemVerilog,,S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/top.sv,,seven_segment,,uvm,,,,,,
+S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/controller_uart.sv,1764514437,systemVerilog,S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/digit_place.sv;S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/m_seq_gen.sv;S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/seven_segment.sv;S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/top.sv;S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/uart_tx.sv,S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/digit_place.sv,,$unit_controller_uart_sv_1852639488;controller_uart,,uvm,,,,,,
+S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/digit_place.sv,1762176613,systemVerilog,S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/m_seq_gen.sv;S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/seven_segment.sv;S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/tb.sv;S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/top.sv,S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/m_seq_gen.sv,,digit_place,,uvm,,,,,,
+S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/m_seq_gen.sv,1762261425,systemVerilog,,S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/seven_segment.sv,,m_seq_gen,,uvm,,,,,,
+S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/seven_segment.sv,1762180687,systemVerilog,,S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/uart_tx.sv,,seven_segment,,uvm,,,,,,
 S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/tb.sv,1761506866,systemVerilog,,,,tb,,uvm,,,,,,
 S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/top.sv,1762252276,systemVerilog,,S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/tb.sv,,top,,uvm,,,,,,
+,,,,S:/Repos/prn-generator/prn_generator.srcs/sources_1/new/top.sv,,uart_tx,,,,,,,,

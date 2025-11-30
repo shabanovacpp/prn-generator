@@ -1,9 +1,0 @@
-# compile verilog/system verilog design source files
-verilog xil_defaultlib  \
-"tb_func_synth.v" \
-
-sv xil_defaultlib  \
-"../../../../../prn_generator.srcs/sources_1/new/tb.sv" \
-
-# Do not sort compile order
-nosort
