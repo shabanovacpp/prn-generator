@@ -79,8 +79,6 @@ module top(
     
     bit seq_uart;
     bit [7:0] uart_data;
-//    bit [7:0] uart_data2;
-//    bit [7:0] uart_data3;
 
     assign LED[1] = g1 ^ g2_1 ^ g2_2;
     
@@ -197,47 +195,62 @@ module top(
         .tx_busy(tx_busy)
     );
 
-    m_seq_gen #(.n_out(N_OUT_GLN), .code_length(CODE_LENGTH_GLN),
-                .sr_length(SR_LENGTH), .polynome(polynomeGLN)) gln_l1of_uart 
+//    m_seq_gen #(.n_out(N_OUT_GLN), .code_length(CODE_LENGTH_GLN),
+//                .sr_length(SR_LENGTH), .polynome(polynomeGLN)) gln_l1of_uart 
+//    (
+//        .m_clk(tx_busy),
+//        .m_rst(rst),
+//        .out(seq_uart)
+//        `ifdef SIMULATION
+//        ,
+//        .sr(s_reg_gln)
+//        `endif
+//    );
+
+    m_seq_gen #(.n_out(N_OUT_GPS), .code_length(CODE_LENGTH_GPS),
+               .sr_length(SR_LENGTH), .polynome(polynomeGPS1)) gps_l1ca_g1_uart 
     (
         .m_clk(tx_busy),
         .m_rst(rst),
-        .out(seq_uart)
+        .out(g1_uart)
         `ifdef SIMULATION
         ,
         .sr(s_reg_gln)
         `endif
     );
-//    bit uart_data2;
     
-//    always_ff @(posedge clk) begin
-//        uart_data2 <= uart_data;
-//    end
+    m_seq_gen #(.n_out(TAP_G2[NUM_SAT][7:4]), .code_length(CODE_LENGTH_GPS),
+                .sr_length(SR_LENGTH), .polynome(polynomeGPS2)) gps_l1ca_g2_1_uart 
+    (
+        .m_clk(tx_busy),
+        .m_rst(rst),
+        .out(g2_1_uart)
+        `ifdef SIMULATION
+        ,
+        .sr(s_reg_gln)
+        `endif
+    );
+    
+    m_seq_gen #(.n_out(TAP_G2[NUM_SAT][3:0]), .code_length(CODE_LENGTH_GPS),
+                .sr_length(SR_LENGTH), .polynome(polynomeGPS2)) gps_l1ca_g2_2_uart 
+    (
+        .m_clk(tx_busy),
+        .m_rst(rst),
+        .out(g2_2_uart)
+        `ifdef SIMULATION
+        ,
+        .sr(s_reg_gps_g1)
+        `endif
+    );
+    
+    bit g1_uart;
+    bit g2_1_uart;
+    bit g2_2_uart;
+
+    assign seq_uart = g1_uart ^ g2_1_uart ^ g2_2_uart;
     
     always_ff @(posedge tx_busy) begin //clk_uart
-
-//        if (counter_clk_uart == 0) begin
-//            clk_uart_bite <= 1'b1;
-//            tx_enable <= 1'b1;
-//            //uart_data <= {8{seq_uart}};
-//            uart_data <= ~uart_data;
-//        end
-//        else begin
-//            clk_uart_bite <= 1'b0;
-//        end
-
-//        if (counter_clk_uart < RETENTION_DURATION) begin
-//            counter_clk_uart <= counter_clk_uart + 1;
-//        end
-//        else begin
-//            counter_clk_uart <= 0;
-//        end
-        
-        //if (tx_busy == 0) begin
-//          clk_uart_bite <= 1'b1;
-//          tx_enable <= 1'b1;
           uart_data <= {8{seq_uart}};
-        //end
     end
     
     always_ff @(posedge clk) begin   //for rst
